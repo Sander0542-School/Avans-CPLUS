@@ -13,3 +13,4 @@ endif()
 file(GLOB_RECURSE SOURCE src/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE})
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
