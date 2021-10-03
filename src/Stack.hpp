@@ -14,6 +14,8 @@ public:
 
     std::string peek() const noexcept;
 
+    void clear() noexcept;
+
 private:
     std::vector<std::string>* items;
 };

@@ -17,3 +17,7 @@ std::string Stack::pop() noexcept {
 std::string Stack::peek() const noexcept {
     return items->back();
 }
+
+void Stack::clear() noexcept {
+    items->clear();
+}
