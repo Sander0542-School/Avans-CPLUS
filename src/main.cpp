@@ -17,7 +17,13 @@ int main() {
         do
         {
             std::cout << "Loading contents from " << baseUrl << result << "\n";
-            std::string contents = httpClient->get(result);
+            std::string contents;
+            bool success = httpClient->get(result, &contents);
+
+            if (!success) {
+                std::cout << "Could not load file.\n";
+                return 0;
+            }
 
             isEnd = interpreter->execute(contents, &result);
         } while (!isEnd && result != "");

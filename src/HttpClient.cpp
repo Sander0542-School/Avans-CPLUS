@@ -2,10 +2,12 @@
 
 size_t CurlWrite_CallbackFunc_StdString(void* contents, size_t size, size_t nmemb, std::string* s) {
     size_t newLength = size * nmemb;
-    try {
+    try
+    {
         s->append((char*) contents, newLength);
     }
-    catch (std::bad_alloc& e) {
+    catch (std::bad_alloc& e)
+    {
         //handle memory problem
         return 0;
     }
@@ -20,6 +22,7 @@ HttpClient::HttpClient(const std::string baseUrl) : baseUrl{baseUrl} {
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, CurlWrite_CallbackFunc_StdString);
+    curl_easy_setopt(curl, CURLOPT_FAILONERROR, true);
 }
 
 HttpClient::~HttpClient() {
@@ -27,20 +30,21 @@ HttpClient::~HttpClient() {
     curl_global_cleanup();
 }
 
-std::string HttpClient::get(const std::string file) const {
-    std::string result = "";
+bool HttpClient::get(const std::string file, std::string* contents) const {
     std::string url = baseUrl + file;
 
-    if (curl) {
+    if (curl)
+    {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &result);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, contents);
 
         CURLcode res = curl_easy_perform(curl);
 
-        if (res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+        if (res != CURLE_OK)
+        {
+            return false;
         }
     }
 
-    return result;
+    return true;
 }

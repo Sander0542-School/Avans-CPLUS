@@ -10,7 +10,7 @@ public:
 
     ~HttpClient();
 
-    std::string get(const std::string) const;
+    bool get(const std::string file, std::string* contents) const;
 
 private:
     const std::string baseUrl;
