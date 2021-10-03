@@ -10,6 +10,8 @@ public:
 
     void push(const std::string value);
 
+    void push(const int value);
+
     std::string pop() noexcept;
 
     std::string peek() const noexcept;
