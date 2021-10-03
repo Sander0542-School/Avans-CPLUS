@@ -27,7 +27,7 @@ HttpClient::~HttpClient() {
     curl_global_cleanup();
 }
 
-std::string HttpClient::get(const std::string) const {
+std::string HttpClient::get(const std::string file) const {
     std::string result = "";
     std::string url = baseUrl + file;
 
