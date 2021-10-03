@@ -143,16 +143,16 @@ void Interpreter::execute_command(std::string command, int* i) {
     }
     else if (command == "slc")
     {
-        auto from = std::stoi(stack->pop());
         auto to = std::stoi(stack->pop());
+        auto from = std::stoi(stack->pop());
         auto val = stack->pop();
-        stack->push(val.substr(to, to - from));
+        stack->push(val.substr(from, to - from));
     }
     else if (command == "idx")
     {
         auto index = std::stoi(stack->pop());
         auto val = stack->pop();
-        stack->push(val.at(index));
+        stack->push(val.substr(index, 1));
     }
     else if (command == "cat")
     {
