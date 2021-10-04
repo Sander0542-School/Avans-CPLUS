@@ -23,6 +23,8 @@ private:
 
     void load_labels(std::vector<std::string>* commands);
 
+    void remove_comments(std::vector<std::string>* commands);
+
     Stack* stack;
     Stack* call_stack;
     variables_map* variables;

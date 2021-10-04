@@ -23,6 +23,7 @@ bool Interpreter::execute(const std::string file, std::string* result) {
 
     auto commands = StringUtil::split(file, "\n");
 
+    remove_comments(commands);
     load_labels(commands);
 
     int i = 0;
@@ -273,5 +274,13 @@ void Interpreter::load_labels(std::vector<std::string>* commands) {
         }
 
         i++;
+    }
+}
+
+void Interpreter::remove_comments(std::vector<std::string>* commands) {
+    for (auto& command: *commands)
+    {
+        std::size_t index = command.find('#');
+        if (index != std::string::npos) command = command.substr(0, index);
     }
 }
