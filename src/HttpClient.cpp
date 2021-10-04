@@ -40,11 +40,11 @@ bool HttpClient::get(const std::string file, std::string* contents) const {
 
         CURLcode res = curl_easy_perform(curl);
 
-        if (res != CURLE_OK)
+        if (res == CURLE_OK)
         {
-            return false;
+            return true;
         }
     }
 
-    return true;
+    return false;
 }

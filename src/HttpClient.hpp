@@ -10,6 +10,14 @@ public:
 
     ~HttpClient();
 
+    HttpClient(const HttpClient& httpClient) = delete;
+
+    HttpClient(HttpClient&& httpClient) = delete;
+
+    HttpClient& operator=(const HttpClient& httpClient) = delete;
+
+    HttpClient& operator=(HttpClient&& httpClient) = delete;
+
     bool get(const std::string file, std::string* contents) const;
 
 private:
