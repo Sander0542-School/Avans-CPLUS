@@ -21,7 +21,7 @@ public:
 private:
     void execute_command(std::string command, int* i);
 
-    void load_labels(std::vector<std::string>* commands);
+    void load_labels(const std::vector<std::string>* commands);
 
     void remove_comments(std::vector<std::string>* commands);
 
