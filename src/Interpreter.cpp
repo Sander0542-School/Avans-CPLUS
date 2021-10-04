@@ -245,6 +245,16 @@ void Interpreter::execute_command(std::string command, int* i) {
         auto line = std::stoi(call_stack->pop());
         *i = line;
     }
+        // Helpers
+    else if (command == "out")
+    {
+        std::cout << stack->peek() << std::endl;
+    }
+        // Others
+    else if (command.empty())
+    {
+        // do nothing
+    }
     else
     {
         std::cout << "Command \"" << command << "\" not found" << std::endl;
