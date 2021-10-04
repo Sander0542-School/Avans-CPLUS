@@ -277,7 +277,8 @@ void Interpreter::load_labels(const std::vector<std::string>* commands) {
 void Interpreter::remove_comments(std::vector<std::string>* commands) {
     for (auto& command: *commands)
     {
-        std::size_t index = command.find('#');
-        if (index != std::string::npos) command = command.substr(0, index);
+        std::size_t index = command.find(" #");
+        if (index != std::string::npos)
+            command = command.substr(0, index);
     }
 }
