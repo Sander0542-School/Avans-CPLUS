@@ -24,20 +24,23 @@ std::string StringUtil::reverse(std::string str) {
 }
 
 std::string StringUtil::rotate(std::string str, int size) {
-    std::string result;
-    for (size_t i = 0; i < str.size(); ++i)
+    int z = str.length(), i = 0;
+    for (i = 0; i <= (z); i++)
     {
-        if (isalpha(str[i]))
+        if (str[i] < 91 && str[i] > 64)
         {
-            if ((tolower(str[i]) - 'a') < size + 1)
-                result.append(1, str[i] + size);
+            if (str[i] < 78)
+                str[i] = str[i] + size;
             else
-                result.append(1, str[i] - size);
+                str[i] = str[i] - size;
         }
-        else
+        if (str[i] < 123 && str[i] > 96)
         {
-            result.append(1, str[i]);
+            if (str[i] < 110)
+                str[i] = str[i] + size;
+            else
+                str[i] = str[i] - size;
         }
     }
-    return result;
+    return str;
 }
