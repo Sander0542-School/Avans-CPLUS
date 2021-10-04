@@ -247,7 +247,7 @@ void Interpreter::execute_command(std::string command, int* i) {
     }
     else
     {
-        std::cout << "Command \"" << command << "\" not found";
+        std::cout << "Command \"" << command << "\" not found" << std::endl;
     }
 }
 
