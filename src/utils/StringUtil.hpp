@@ -11,7 +11,7 @@ public:
 
     static bool starts_with(std::string string, std::string begin);
 
-    static void reverse(std::string& str);
+    static std::string reverse(std::string str);
 
     static std::string rotate(std::string str, int size);
 };

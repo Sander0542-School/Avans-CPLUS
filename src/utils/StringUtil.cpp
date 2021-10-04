@@ -17,11 +17,10 @@ bool StringUtil::starts_with(std::string string, std::string begin) {
     return string.rfind(begin, 0) == 0;
 }
 
-void StringUtil::reverse(std::string& str) {
-    int n = str.length();
+std::string StringUtil::reverse(std::string str) {
+    if (str.empty()) return "";
 
-    for (int i = 0; i < n / 2; i++)
-        std::swap(str[i], str[n - i - 1]);
+    return str.back() + reverse(str.substr(0, str.length() - 1));
 }
 
 std::string StringUtil::rotate(std::string str, int size) {

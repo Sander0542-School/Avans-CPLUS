@@ -137,8 +137,8 @@ void Interpreter::execute_command(std::string command, int* i) {
     }
     else if (command == "rev")
     {
-        auto val = stack->peek();
-        StringUtil::reverse(val);
+        auto val = stack->pop();
+        val = StringUtil::reverse(val);
         stack->push(val);
     }
     else if (command == "slc")
