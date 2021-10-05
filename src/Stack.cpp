@@ -1,8 +1,11 @@
 #include "Stack.hpp"
-#include <iostream>
 
 Stack::Stack() {
     items = new std::vector<std::string>();
+}
+
+Stack::~Stack() {
+    delete items;
 }
 
 void Stack::push(const std::string value) {
@@ -14,7 +17,8 @@ void Stack::push(const int value) {
 }
 
 std::string Stack::pop() noexcept {
-    if (items->size() > 0) {
+    if (items->size() > 0)
+    {
         auto value = items->back();
         items->pop_back();
         return value;
@@ -24,7 +28,8 @@ std::string Stack::pop() noexcept {
 }
 
 std::string Stack::peek() const noexcept {
-    if (items->size() > 0) {
+    if (items->size() > 0)
+    {
         return items->back();
     }
 

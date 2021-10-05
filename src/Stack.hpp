@@ -8,6 +8,8 @@ class Stack {
 public:
     Stack();
 
+    ~Stack();
+
     void push(const std::string value);
 
     void push(const int value);
