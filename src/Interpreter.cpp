@@ -263,7 +263,7 @@ void Interpreter::execute_command(std::string command, int* i) {
 }
 
 void Interpreter::load_labels(const std::vector<std::string>* commands) {
-    for (std::vector<std::string>::size_type i = 0; i != commands->size(); i++)
+    for (int i = 0; i != commands->size(); i++)
     {
         std::string command = (*commands)[i];
 
