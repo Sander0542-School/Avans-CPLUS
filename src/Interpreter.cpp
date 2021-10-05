@@ -21,7 +21,7 @@ bool Interpreter::execute(const std::string file, std::string* result) {
     variables->clear();
     labels->clear();
 
-    auto commands = StringUtil::split(file, "\n");
+    auto commands = StringUtil::split(file);
 
     load_labels(commands);
 
