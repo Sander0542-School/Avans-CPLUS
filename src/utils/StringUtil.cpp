@@ -1,6 +1,6 @@
 #include "StringUtil.hpp"
 
-std::vector<std::string>* StringUtil::split(std::string string, std::string seperator) {
+std::vector<std::string>* StringUtil::split(std::string string) {
     std::stringstream stringstream(string);
     std::string piece;
     auto pieces = new std::vector<std::string>;
