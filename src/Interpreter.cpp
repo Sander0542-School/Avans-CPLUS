@@ -23,7 +23,6 @@ bool Interpreter::execute(const std::string file, std::string* result) {
 
     auto commands = StringUtil::split(file, "\n");
 
-    remove_comments(commands);
     load_labels(commands);
 
     int i = 0;
@@ -46,7 +45,7 @@ bool Interpreter::execute(const std::string file, std::string* result) {
     return false;
 }
 
-void Interpreter::execute_command(std::string command, int* i) {
+void Interpreter::execute_command(const std::string command, int* i) {
     *i = *i + 1;
     // Values and types
     if (std::regex_match(command, std::regex("[0-9]*")))
@@ -251,6 +250,11 @@ void Interpreter::execute_command(std::string command, int* i) {
     {
         std::cout << stack->peek() << std::endl;
     }
+        // Comments
+    else if (StringUtil::starts_with(command, "#"))
+    {
+        std::cout << "Comment: " << command.substr(1) << std::endl;
+    }
         // Others
     else if (command.empty())
     {
@@ -271,14 +275,5 @@ void Interpreter::load_labels(const std::vector<std::string>* commands) {
         {
             labels->insert(std::make_pair(command.substr(1), i));
         }
-    }
-}
-
-void Interpreter::remove_comments(std::vector<std::string>* commands) {
-    for (auto& command: *commands)
-    {
-        std::size_t index = command.find(" #");
-        if (index != std::string::npos)
-            command = command.substr(0, index);
     }
 }
