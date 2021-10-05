@@ -250,6 +250,16 @@ void Interpreter::execute_command(const std::string command, int* i) {
     {
         std::cout << stack->peek() << std::endl;
     }
+    else if (command == "err")
+    {
+        std::cerr << stack->peek() << std::endl;
+    }
+    else if (command == "in")
+    {
+        std::string val;
+        std::cin >> val;
+        stack->push(val);
+    }
         // Comments
     else if (StringUtil::starts_with(command, "#"))
     {
