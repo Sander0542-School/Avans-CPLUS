@@ -11,6 +11,10 @@ else()
 endif()
 
 file(GLOB_RECURSE SOURCE src/*.cpp)
-
 add_executable(${PROJECT_NAME} ${SOURCE})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+
+file(GLOB_RECURSE TESTS src/*.cpp tests/*.cpp)
+list(FILTER TESTS EXCLUDE REGEX ".*src/main.cpp$")
+add_executable(${PROJECT_NAME}_Tests ${TESTS})
+target_link_libraries(${PROJECT_NAME}_Tests ${CONAN_LIBS})
