@@ -1,15 +1,14 @@
-#include "iostream"
-#include "../src/Stack.hpp"
+#include <iostream>
+#include <vector>
+#include "StackTests.hpp"
 
 int main() {
-    Stack stack;
-    stack.push("1");
+    auto tests = new std::vector<TestsBase*>{
+            new StackTests,
+    };
 
-    auto stack2{stack};
+    for (const auto& test: *tests)
+        test->run();
 
-    stack2.push("2");
-
-    std::cout << stack.pop() << std::endl;
-    std::cout << stack2.pop() << std::endl;
-    std::cout << stack2.pop() << std::endl;
+    std::cout << "All tests ran successfully" << std::endl;
 }
