@@ -1,7 +1,7 @@
 #ifndef SPEUREN_MET_KRUL_HTTPCLIENT_HPP
 #define SPEUREN_MET_KRUL_HTTPCLIENT_HPP
 
-#include <xstring>
+#include <string>
 #include "curl/curl.h"
 
 class HttpClient {
