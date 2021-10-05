@@ -21,7 +21,7 @@ public:
     void clear() noexcept;
 
 private:
-    std::vector<std::string>* items;
+    std::vector<std::string>* _items;
 };
 
 
