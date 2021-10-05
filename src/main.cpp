@@ -20,13 +20,14 @@ int main() {
             std::string contents;
             bool success = httpClient->get(result, &contents);
 
-            if (!success) {
+            if (!success)
+            {
                 std::cout << "Could not load file.\n";
                 return 0;
             }
 
             isEnd = interpreter->execute(contents, &result);
-        } while (!isEnd && result != "");
+        } while (!isEnd);
 
         std::cout << "The secret messages is \"" << result << "\".\n";
     }
