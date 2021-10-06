@@ -21,7 +21,7 @@ public:
 private:
     void execute_command(const std::string command, int* i);
 
-    void load_labels(const std::vector<std::string>* commands);
+    void load_labels(const std::vector<std::string>& commands);
 
     Stack* stack;
     Stack* call_stack;
