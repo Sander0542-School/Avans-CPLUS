@@ -1,10 +1,10 @@
 #include "HttpClient.hpp"
 
-size_t CurlWrite_CallbackFunc_StdString(void* contents, size_t size, size_t nmemb, std::string* s) {
+size_t CurlWrite_CallbackFunc_StdString(char* contents, size_t size, size_t nmemb, std::string* s) {
     size_t newLength = size * nmemb;
     try
     {
-        s->append((char*) contents, newLength);
+        s->append(contents, newLength);
     }
     catch (std::bad_alloc& e)
     {
