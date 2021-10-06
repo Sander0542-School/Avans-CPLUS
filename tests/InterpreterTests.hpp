@@ -61,7 +61,7 @@ public:
             if (success)
             {
                 std::string result;
-                Assert::Same(file.second, interpreter.execute(base + content, &result));
+                Assert::Same(file.second, interpreter.execute(base + content, result));
             }
         }
     }

@@ -16,7 +16,7 @@ public:
 
     ~Interpreter();
 
-    bool execute(const std::string file, std::string* result);
+    bool execute(const std::string file, std::string& result);
 
 private:
     void execute_command(const std::string command, int& i);

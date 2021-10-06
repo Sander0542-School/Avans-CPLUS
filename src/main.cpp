@@ -26,7 +26,7 @@ int main() {
                 return 0;
             }
 
-            isEnd = interpreter.execute(contents, &result);
+            isEnd = interpreter.execute(contents, result);
         } while (!isEnd);
 
         std::cout << "The secret messages is \"" << result << "\".\n";

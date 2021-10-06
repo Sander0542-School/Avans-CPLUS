@@ -15,7 +15,7 @@ Interpreter::~Interpreter() {
     delete stack;
 }
 
-bool Interpreter::execute(const std::string file, std::string* result) {
+bool Interpreter::execute(const std::string file, std::string& result) {
     stack->clear();
     call_stack->clear();
     variables->clear();
@@ -33,14 +33,14 @@ bool Interpreter::execute(const std::string file, std::string* result) {
 
         if (command == "end")
         {
-            *result = stack->peek();
+            result = stack->peek();
             return true;
         }
 
         execute_command(command, i);
     }
 
-    *result = stack->peek();
+    result = stack->peek();
 
     return false;
 }
