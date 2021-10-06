@@ -5,6 +5,7 @@
 
 class Assert {
 public:
+    static std::string current_name;
     static int tests;
     static int errors;
 
@@ -45,8 +46,6 @@ public:
     }
 
 private:
-    static void PrintPrefix(const std::string caller = __builtin_FUNCTION());
-
     static void PrintSuccess(const std::string caller = __builtin_FUNCTION());
 
     static void PrintError(const std::string message, const std::string caller = __builtin_FUNCTION());
