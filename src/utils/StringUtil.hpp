@@ -7,7 +7,7 @@
 
 class StringUtil {
 public:
-    static std::vector<std::string>* split(std::string string);
+    static std::vector<std::string> split(const std::string string);
 
     static bool starts_with(std::string string, std::string begin);
 

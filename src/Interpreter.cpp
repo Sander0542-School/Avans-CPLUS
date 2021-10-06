@@ -27,9 +27,9 @@ bool Interpreter::execute(const std::string file, std::string* result) {
 
     int i = 0;
 
-    while (i >= 0 && i < commands->size())
+    while (i >= 0 && i < commands.size())
     {
-        std::string command = (*commands)[i];
+        std::string command = (commands)[i];
 
         if (command == "end")
         {
@@ -276,10 +276,10 @@ void Interpreter::execute_command(const std::string command, int* i) {
     }
 }
 
-void Interpreter::load_labels(const std::vector<std::string>* commands) {
-    for (int i = 0; i != commands->size(); i++)
+void Interpreter::load_labels(const std::vector<std::string>& commands) {
+    for (int i = 0; i != commands.size(); i++)
     {
-        std::string command = (*commands)[i];
+        std::string command = (commands)[i];
 
         if (StringUtil::starts_with(command, ":"))
         {
