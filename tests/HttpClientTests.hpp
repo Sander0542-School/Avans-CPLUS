@@ -11,6 +11,7 @@ class HttpClientTests : public TestsBase {
     }
 
     static void test_success() {
+        Assert::Start("Http Client Success");
         HttpClient httpClient = HttpClient("https://httpstat.us/");
 
         std::string result;
@@ -21,6 +22,7 @@ class HttpClientTests : public TestsBase {
     }
 
     static void test_not_found() {
+        Assert::Start("Http Client Not Found");
         HttpClient httpClient = HttpClient("https://httpstat.us/");
 
         std::string result;

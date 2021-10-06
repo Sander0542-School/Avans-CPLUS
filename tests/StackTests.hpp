@@ -12,6 +12,7 @@ public:
     }
 
     static void test_pop() {
+        Assert::Start("Stack Pop");
         Stack stack;
 
         Assert::Same(empty, stack.pop());
@@ -25,6 +26,7 @@ public:
     }
 
     static void test_peek() {
+        Assert::Start("Stack Peek");
         Stack stack;
 
         Assert::Same(empty, stack.peek());

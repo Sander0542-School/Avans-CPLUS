@@ -2,6 +2,7 @@
 #define SPEUREN_MET_KRUL_INTERPRETERTESTS_HPP
 
 #include "TestsBase.hpp"
+#include "../src/Interpreter.hpp"
 
 class InterpreterTests : public TestsBase {
 public:
@@ -10,7 +11,8 @@ public:
     }
 
     static void test_files() {
-
+        Assert::Start("Interpreter Files");
+        Interpreter interpreter;
     }
 };
 
