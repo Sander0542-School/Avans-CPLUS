@@ -6,18 +6,34 @@
 class Assert {
 public:
     template<class T>
-    static void same(T expected, T result) {
+    static void Same(T expected, T result) {
         if (expected != result)
         {
-            throw std::runtime_error("Values are not the same");
+            throw std::runtime_error("Values are not the Same");
         }
     }
 
     template<class T>
-    static void not_same(T expected, T result) {
+    static void NotSame(T expected, T result) {
         if (expected == result)
         {
-            throw std::runtime_error("Values are the same");
+            throw std::runtime_error("Values are the Same");
+        }
+    }
+
+    template<class T>
+    static void True(T result) {
+        if (!result)
+        {
+            throw std::runtime_error("The result is not true");
+        }
+    }
+
+    template<class T>
+    static void False(T result) {
+        if (result)
+        {
+            throw std::runtime_error("The result is not false");
         }
     }
 };
