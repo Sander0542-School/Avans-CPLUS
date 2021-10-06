@@ -9,9 +9,9 @@ class StringUtil {
 public:
     static std::vector<std::string> split(const std::string string);
 
-    static bool starts_with(std::string string, std::string begin);
+    static bool starts_with(const std::string string, const std::string begin);
 
-    static std::string reverse(std::string str);
+    static std::string reverse(const std::string str);
 
     static std::string rotate(std::string str, int size);
 };
