@@ -37,7 +37,7 @@ bool Interpreter::execute(const std::string file, std::string* result) {
             return true;
         }
 
-        execute_command(command, &i);
+        execute_command(command, i);
     }
 
     *result = stack->peek();
@@ -45,8 +45,8 @@ bool Interpreter::execute(const std::string file, std::string* result) {
     return false;
 }
 
-void Interpreter::execute_command(const std::string command, int* i) {
-    *i = *i + 1;
+void Interpreter::execute_command(const std::string command, int& i) {
+    i++;
     // Values and types
     if (std::regex_match(command, std::regex("[0-9]*")))
     {
@@ -178,7 +178,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         // Tests & Jumps
     else if (command == "gto")
     {
-        *i = std::stoi(stack->pop());
+        i = std::stoi(stack->pop());
     }
     else if (command == "geq")
     {
@@ -187,7 +187,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = stack->pop();
 
         if (val1.compare(val2) == 0)
-            *i = line;
+            i = line;
     }
     else if (command == "gne")
     {
@@ -196,7 +196,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = stack->pop();
 
         if (val1.compare(val2) != 0)
-            *i = line;
+            i = line;
     }
     else if (command == "glt")
     {
@@ -205,7 +205,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = std::stoi(stack->pop());
 
         if (val1 < val2)
-            *i = line;
+            i = line;
     }
     else if (command == "gle")
     {
@@ -214,7 +214,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = std::stoi(stack->pop());
 
         if (val1 <= val2)
-            *i = line;
+            i = line;
     }
     else if (command == "ggt")
     {
@@ -223,7 +223,7 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = std::stoi(stack->pop());
 
         if (val1 > val2)
-            *i = line;
+            i = line;
     }
     else if (command == "gge")
     {
@@ -232,18 +232,18 @@ void Interpreter::execute_command(const std::string command, int* i) {
         auto val1 = std::stoi(stack->pop());
 
         if (val1 >= val2)
-            *i = line;
+            i = line;
     }
         // Functions
     else if (command == "fun")
     {
-        call_stack->push(*i);
+        call_stack->push(i);
         execute_command("gto", i);
     }
     else if (command == "ret")
     {
         auto line = std::stoi(call_stack->pop());
-        *i = line;
+        i = line;
     }
         // Helpers
     else if (command == "out")
