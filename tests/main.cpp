@@ -6,8 +6,8 @@
 int main() {
     auto tests = new std::vector<TestsBase*>{
             new HttpClientTests,
-            new InterpreterTests,
             new StackTests,
+            new InterpreterTests,
     };
 
     for (const auto& test: *tests)
