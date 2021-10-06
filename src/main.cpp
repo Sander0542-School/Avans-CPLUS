@@ -8,8 +8,8 @@ const std::string startFile = "start.txt";
 int main() {
     try
     {
-        auto httpClient = std::make_unique<HttpClient>(baseUrl);
-        auto interpreter = std::make_unique<Interpreter>();
+        HttpClient httpClient = {baseUrl};
+        Interpreter interpreter;
 
         std::string result = startFile;
         bool isEnd;
@@ -18,7 +18,7 @@ int main() {
         {
             std::cout << "Loading contents from " << baseUrl << result << "\n";
             std::string contents;
-            bool success = httpClient->get(result, &contents);
+            bool success = httpClient.get(result, &contents);
 
             if (!success)
             {
@@ -26,7 +26,7 @@ int main() {
                 return 0;
             }
 
-            isEnd = interpreter->execute(contents, &result);
+            isEnd = interpreter.execute(contents, &result);
         } while (!isEnd);
 
         std::cout << "The secret messages is \"" << result << "\".\n";
