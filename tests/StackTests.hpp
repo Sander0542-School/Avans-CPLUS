@@ -14,26 +14,26 @@ public:
     static void test_pop() {
         Stack stack;
 
-        Assert::same(empty, stack.pop());
+        Assert::Same(empty, stack.pop());
 
         std::string result = "example";
 
         stack.push(result);
 
-        Assert::same(result, stack.pop());
-        Assert::same(empty, stack.peek());
+        Assert::Same(result, stack.pop());
+        Assert::Same(empty, stack.peek());
     }
 
     static void test_peek() {
         Stack stack;
 
-        Assert::same(empty, stack.peek());
+        Assert::Same(empty, stack.peek());
 
         std::string result = "example";
 
         stack.push(result);
 
-        Assert::same(result, stack.peek());
+        Assert::Same(result, stack.peek());
     }
 };
 
