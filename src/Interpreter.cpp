@@ -15,7 +15,7 @@ Interpreter::~Interpreter() {
     delete stack;
 }
 
-bool Interpreter::execute(const std::string file, std::string& result) {
+bool Interpreter::execute(const std::string& file, std::string& result) {
     stack->clear();
     call_stack->clear();
     variables->clear();
@@ -45,7 +45,7 @@ bool Interpreter::execute(const std::string file, std::string& result) {
     return false;
 }
 
-void Interpreter::execute_command(const std::string command, int& i) {
+void Interpreter::execute_command(std::string& command, int& i) {
     i++;
     // Values and types
     if (std::regex_match(command, std::regex("[0-9]*")))
@@ -54,7 +54,8 @@ void Interpreter::execute_command(const std::string command, int& i) {
     }
     else if (StringUtil::starts_with(command, "\\"))
     {
-        stack->push(command.substr(1));
+        command.erase(0, 1);
+        stack->push(command);
     }
     else if (StringUtil::starts_with(command, ":"))
     {
@@ -62,16 +63,19 @@ void Interpreter::execute_command(const std::string command, int& i) {
     }
     else if (StringUtil::starts_with(command, ">"))
     {
-        stack->push(labels->at(command.substr(1)));
+        command.erase(0, 1);
+        stack->push(labels->at(command));
     }
     else if (StringUtil::starts_with(command, "="))
     {
-        variables->erase(command.substr(1));
-        variables->insert(std::make_pair(command.substr(1), stack->pop()));
+        command.erase(0, 1);
+        variables->erase(command);
+        variables->insert(std::make_pair(command, stack->pop()));
     }
     else if (StringUtil::starts_with(command, "$"))
     {
-        stack->push(variables->at(command.substr(1)));
+        command.erase(0, 1);
+        stack->push(variables->at(command));
     }
         // Integer operations
     else if (command == "add")
@@ -239,7 +243,8 @@ void Interpreter::execute_command(const std::string command, int& i) {
     else if (command == "fun")
     {
         call_stack->push(i);
-        execute_command("gto", i);
+        std::string gto = "gto";
+        execute_command(gto, i);
     }
     else if (command == "ret")
     {
