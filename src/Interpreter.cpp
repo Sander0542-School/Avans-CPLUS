@@ -138,7 +138,7 @@ void Interpreter::execute_command(const std::string command, int& i) {
     else if (command == "rev")
     {
         auto val = stack->pop();
-        val = StringUtil::reverse(val);
+        StringUtil::reverse(val);
         stack->push(val);
     }
     else if (command == "slc")
@@ -168,7 +168,8 @@ void Interpreter::execute_command(const std::string command, int& i) {
     else if (command == "rot")
     {
         auto val = stack->pop();
-        stack->push(StringUtil::rotate(val, 13));
+        StringUtil::rotate(val, 13);
+        stack->push(val);
     }
     else if (command == "enl")
     {
