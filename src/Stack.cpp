@@ -8,7 +8,7 @@ Stack::~Stack() {
     delete _items;
 }
 
-void Stack::push(const std::string value) {
+void Stack::push(const std::string& value) {
     _items->push_back(value);
 }
 

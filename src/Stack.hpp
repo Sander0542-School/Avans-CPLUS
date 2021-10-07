@@ -29,7 +29,7 @@ public:
         return *this;
     }
 
-    void push(const std::string value);
+    void push(const std::string& value);
 
     void push(const int value);
 
