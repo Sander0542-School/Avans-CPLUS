@@ -1,3 +1,4 @@
+#include "chrono"
 #include "iostream"
 #include "HttpClient.hpp"
 #include "Interpreter.hpp"
@@ -6,6 +7,7 @@ const std::string baseUrl = "https://www.swiftcoder.nl/cplus/";
 const std::string startFile = "start.txt";
 
 int main() {
+    auto start = std::chrono::high_resolution_clock::now();
     try
     {
         HttpClient httpClient = {baseUrl};
@@ -33,7 +35,9 @@ int main() {
     }
     catch (...)
     {
-        std::cout << "There was an error" << std::endl;
-        throw;
+        std::cerr << "There was an error" << std::endl;
     }
+
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::cout << "Program duration = " << std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count() << "[ms]" << std::endl;
 }
