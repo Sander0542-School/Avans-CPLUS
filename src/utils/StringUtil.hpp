@@ -11,6 +11,8 @@ public:
 
     static bool starts_with(const std::string& string, const std::string& begin);
 
+    static bool is_number(const std::string& string);
+
     static void reverse(std::string& str);
 
     static void rotate(std::string& str, int size);

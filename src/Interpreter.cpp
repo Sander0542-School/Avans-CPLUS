@@ -47,38 +47,8 @@ bool Interpreter::execute(const std::string& file, std::string& result) {
 
 void Interpreter::execute_command(std::string& command, int& i) {
     i++;
-    // Values and types
-    if (std::regex_match(command, std::regex("[0-9]*")))
-    {
-        stack->push(command);
-    }
-    else if (StringUtil::starts_with(command, "\\"))
-    {
-        command.erase(0, 1);
-        stack->push(command);
-    }
-    else if (StringUtil::starts_with(command, ":"))
-    {
-        // do nothing
-    }
-    else if (StringUtil::starts_with(command, ">"))
-    {
-        command.erase(0, 1);
-        stack->push(labels->at(command));
-    }
-    else if (StringUtil::starts_with(command, "="))
-    {
-        command.erase(0, 1);
-        variables->erase(command);
-        variables->insert(std::make_pair(command, stack->pop()));
-    }
-    else if (StringUtil::starts_with(command, "$"))
-    {
-        command.erase(0, 1);
-        stack->push(variables->at(command));
-    }
-        // Integer operations
-    else if (command == "add")
+    // Integer operations
+    if (command == "add")
     {
         int val1 = std::stoi(stack->pop());
         int val2 = std::stoi(stack->pop());
@@ -250,6 +220,36 @@ void Interpreter::execute_command(std::string& command, int& i) {
     {
         auto line = std::stoi(call_stack->pop());
         i = line;
+    }
+        // Values and types
+    else if (StringUtil::is_number(command))
+    {
+        stack->push(command);
+    }
+    else if (StringUtil::starts_with(command, "\\"))
+    {
+        command.erase(0, 1);
+        stack->push(command);
+    }
+    else if (StringUtil::starts_with(command, ":"))
+    {
+        // do nothing
+    }
+    else if (StringUtil::starts_with(command, ">"))
+    {
+        command.erase(0, 1);
+        stack->push(labels->at(command));
+    }
+    else if (StringUtil::starts_with(command, "="))
+    {
+        command.erase(0, 1);
+        variables->erase(command);
+        variables->insert(std::make_pair(command, stack->pop()));
+    }
+    else if (StringUtil::starts_with(command, "$"))
+    {
+        command.erase(0, 1);
+        stack->push(variables->at(command));
     }
         // Helpers
     else if (command == "out")
