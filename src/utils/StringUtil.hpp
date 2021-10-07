@@ -7,13 +7,13 @@
 
 class StringUtil {
 public:
-    static std::vector<std::string> split(const std::string string);
+    static std::vector<std::string> split(const std::string& string);
 
-    static bool starts_with(const std::string string, const std::string begin);
+    static bool starts_with(const std::string& string, const std::string& begin);
 
-    static std::string reverse(const std::string str);
+    static void reverse(std::string& str);
 
-    static std::string rotate(std::string str, int size);
+    static void rotate(std::string& str, int size);
 };
 
 
