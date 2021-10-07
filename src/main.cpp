@@ -16,24 +16,24 @@ int main() {
 
         do
         {
-            std::cout << "Loading contents from " << baseUrl << result << "\n";
+            std::cout << "Loading contents from " << baseUrl << result << std::endl;
             std::string contents;
             bool success = httpClient.get(result, &contents);
 
             if (!success)
             {
-                std::cout << "Could not load file.\n";
+                std::cout << "Could not load file" << std::endl;
                 return 0;
             }
 
             isEnd = interpreter.execute(contents, result);
         } while (!isEnd);
 
-        std::cout << "The secret messages is \"" << result << "\".\n";
+        std::cout << "The secret messages is \"" << result << "\"." << std::endl;
     }
     catch (...)
     {
-        std::cout << "There was an error";
+        std::cout << "There was an error" << std::endl;
         throw;
     }
 }
