@@ -4,7 +4,6 @@
 #include "Stack.hpp"
 #include "utils/StringUtil.hpp"
 #include <map>
-#include <regex>
 #include <string>
 
 using variables_map = std::map<std::string, std::string>;
@@ -14,8 +13,6 @@ class Interpreter {
 public:
     Interpreter();
 
-    ~Interpreter();
-
     bool execute(const std::string& file, std::string& result);
 
 private:
@@ -23,10 +20,10 @@ private:
 
     void load_labels(const std::vector<std::string>& commands);
 
-    Stack* stack;
-    Stack* call_stack;
-    variables_map* variables;
-    labels_map* labels;
+    Stack stack;
+    Stack call_stack;
+    variables_map variables;
+    labels_map labels;
 };
 
 #endif //SPEUREN_MET_KRUL_INTERPRETER_HPP
