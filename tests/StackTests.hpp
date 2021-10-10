@@ -6,7 +6,7 @@
 
 class StackTests : public TestsBase {
 public:
-    void run() override;
+    static void run();
 
     static void test_pop();
 

@@ -5,11 +5,12 @@
 #include "../src/HttpClient.hpp"
 
 class HttpClientTests : public TestsBase {
-    void run() override;
-
+public:
     static void test_success();
 
     static void test_not_found();
+
+    static void run();
 };
 
 

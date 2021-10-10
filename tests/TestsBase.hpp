@@ -6,8 +6,6 @@
 class TestsBase {
 public:
     static const std::string empty;
-
-    virtual void run() = 0;
 };
 
 

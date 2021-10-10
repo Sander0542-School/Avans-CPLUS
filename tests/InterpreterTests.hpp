@@ -8,12 +8,11 @@
 
 class InterpreterTests : public TestsBase {
 public:
-    void run() override;
+    static void run();
 
     static void test_files();
 
-private:
-    static std::string baseUrl;
+    static const std::string baseUrl;
 };
 
 #endif //SPEUREN_MET_KRUL_INTERPRETERTESTS_HPP

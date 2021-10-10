@@ -1,6 +1,6 @@
 #include "InterpreterTests.hpp"
 
-std::string InterpreterTests::baseUrl = "https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/";
+const std::string InterpreterTests::baseUrl = "https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/";
 
 void InterpreterTests::run() {
     test_files();
