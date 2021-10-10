@@ -1,26 +1,22 @@
 #include "Stack.hpp"
 
 Stack::Stack() {
-    _items = new std::vector<std::string>();
-}
-
-Stack::~Stack() {
-    delete _items;
+    _items = std::vector<std::string>();
 }
 
 void Stack::push(const std::string& value) {
-    _items->push_back(value);
+    _items.push_back(value);
 }
 
 void Stack::push(const int value) {
-    _items->push_back(std::to_string(value));
+    _items.push_back(std::to_string(value));
 }
 
 std::string Stack::pop() noexcept {
-    if (_items->size() > 0)
+    if (!_items.empty())
     {
-        auto value = _items->back();
-        _items->pop_back();
+        auto value = _items.back();
+        _items.pop_back();
         return value;
     }
 
@@ -28,14 +24,14 @@ std::string Stack::pop() noexcept {
 }
 
 std::string Stack::peek() const noexcept {
-    if (_items->size() > 0)
+    if (!_items.empty())
     {
-        return _items->back();
+        return _items.back();
     }
 
     return "";
 }
 
 void Stack::clear() noexcept {
-    _items->clear();
+    _items.clear();
 }
