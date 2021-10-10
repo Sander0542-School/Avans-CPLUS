@@ -217,10 +217,6 @@ void Interpreter::execute_command(std::string& command, int& i) {
         command.erase(0, 1);
         stack.push(command);
     }
-    else if (StringUtil::starts_with(command, ":"))
-    {
-        // do nothing
-    }
     else if (StringUtil::starts_with(command, ">"))
     {
         command.erase(0, 1);
@@ -256,15 +252,6 @@ void Interpreter::execute_command(std::string& command, int& i) {
     else if (StringUtil::starts_with(command, "#"))
     {
         std::cout << "Comment: " << command.substr(1) << std::endl;
-    }
-        // Others
-    else if (command.empty())
-    {
-        // do nothing
-    }
-    else
-    {
-        std::cout << "Command \"" << command << "\" not found" << std::endl;
     }
 }
 
