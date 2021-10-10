@@ -10,7 +10,10 @@ public:
 
     void push(const std::string& value);
 
-    void push(const int value);
+    template<class T>
+    void push(const T& value) {
+        _items.push_back(std::to_string(value));
+    }
 
     std::string pop() noexcept;
 

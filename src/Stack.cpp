@@ -8,10 +8,6 @@ void Stack::push(const std::string& value) {
     _items.push_back(value);
 }
 
-void Stack::push(const int value) {
-    _items.push_back(std::to_string(value));
-}
-
 std::string Stack::pop() noexcept {
     if (!_items.empty())
     {
