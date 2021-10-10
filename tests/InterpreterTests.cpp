@@ -1,13 +1,11 @@
 #include "InterpreterTests.hpp"
 
-const std::string InterpreterTests::baseUrl = "https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/";
-
 void InterpreterTests::run() {
     test_files();
 }
 
 void InterpreterTests::test_files() {
-    // https://gist.github.com/Sander0542/2f14d5f7ae656ad91dba180764c19710
+    const std::string baseUrl = "https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/";
     std::unique_ptr<CURL, void (*)(CURL*)> curl{curl_easy_init(), &curl_easy_cleanup};
     Interpreter interpreter;
 

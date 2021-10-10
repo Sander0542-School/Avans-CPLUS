@@ -11,8 +11,6 @@ public:
     static void run();
 
     static void test_files();
-
-    static const std::string baseUrl;
 };
 
 #endif //SPEUREN_MET_KRUL_INTERPRETERTESTS_HPP
