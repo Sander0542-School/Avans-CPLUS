@@ -1,6 +1,7 @@
 #ifndef SPEUREN_MET_KRUL_HTTPCLIENT_HPP
 #define SPEUREN_MET_KRUL_HTTPCLIENT_HPP
 
+#include "memory"
 #include <string>
 #include "curl/curl.h"
 
