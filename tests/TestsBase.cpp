@@ -1,3 +1,3 @@
 #include "TestsBase.hpp"
 
-const std::string TestsBase::empty = "";
+const std::string TestsBase::empty;
