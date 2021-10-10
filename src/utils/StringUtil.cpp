@@ -26,8 +26,8 @@ void StringUtil::reverse(std::string& str) {
 }
 
 void StringUtil::rotate(std::string& str, int size) {
-    int z = str.length();
-    for (int i = 0; i <= (z); i++)
+    auto z = str.length();
+    for (size_t i = 0; i <= (z); i++)
     {
         if (str[i] < 91 && str[i] > 64)
         {
