@@ -5,31 +5,11 @@
 #include "../src/HttpClient.hpp"
 
 class HttpClientTests : public TestsBase {
-    void run() override {
-        test_success();
-        test_not_found();
-    }
+    void run() override;
 
-    static void test_success() {
-        Assert::Start("Http Client Success");
-        HttpClient httpClient = HttpClient("https://httpstat.us/");
+    static void test_success();
 
-        std::string result;
-        auto success = httpClient.get("200", &result);
-
-        Assert::True(success);
-        Assert::Same(std::string("200 OK"), result);
-    }
-
-    static void test_not_found() {
-        Assert::Start("Http Client Not Found");
-        HttpClient httpClient = HttpClient("https://httpstat.us/");
-
-        std::string result;
-        auto success = httpClient.get("404", &result);
-
-        Assert::False(success);
-    }
+    static void test_not_found();
 };
 
 

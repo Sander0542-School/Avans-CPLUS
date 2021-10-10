@@ -6,37 +6,11 @@
 
 class StackTests : public TestsBase {
 public:
-    void run() override {
-        test_pop();
-        test_peek();
-    }
+    void run() override;
 
-    static void test_pop() {
-        Assert::Start("Stack Pop");
-        Stack stack;
+    static void test_pop();
 
-        Assert::Same(empty, stack.pop());
-
-        std::string result = "example";
-
-        stack.push(result);
-
-        Assert::Same(result, stack.pop());
-        Assert::Same(empty, stack.peek());
-    }
-
-    static void test_peek() {
-        Assert::Start("Stack Peek");
-        Stack stack;
-
-        Assert::Same(empty, stack.peek());
-
-        std::string result = "example";
-
-        stack.push(result);
-
-        Assert::Same(result, stack.peek());
-    }
+    static void test_peek();
 };
 
 
