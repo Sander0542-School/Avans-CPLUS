@@ -6,8 +6,6 @@
 
 class Stack {
 public:
-    Stack();
-
     void push(const std::string& value);
 
     template<class T>

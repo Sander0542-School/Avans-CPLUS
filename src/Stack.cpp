@@ -1,9 +1,5 @@
 #include "Stack.hpp"
 
-Stack::Stack() {
-    _items = std::vector<std::string>();
-}
-
 void Stack::push(const std::string& value) {
     _items.push_back(value);
 }
