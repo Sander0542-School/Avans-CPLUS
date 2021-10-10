@@ -6,23 +6,7 @@
 
 class HttpClient {
 public:
-    HttpClient(const std::string baseUrl);
-
-    ~HttpClient();
-
-    HttpClient(const HttpClient& httpClient) = delete;
-
-    HttpClient(HttpClient&& httpClient) = delete;
-
-    HttpClient& operator=(const HttpClient& httpClient) = delete;
-
-    HttpClient& operator=(HttpClient&& httpClient) = delete;
-
-    bool get(const std::string file, std::string* contents) const;
-
-private:
-    const std::string baseUrl;
-    CURL* curl;
+    static bool get(CURL* curl, const std::string& url, std::string* contents);
 };
 
 

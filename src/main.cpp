@@ -10,7 +10,7 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
     try
     {
-        HttpClient httpClient = {baseUrl};
+        std::unique_ptr<CURL, void (*)(CURL*)> curl{curl_easy_init(), &curl_easy_cleanup};
         Interpreter interpreter;
 
         std::string result = startFile;
@@ -20,7 +20,7 @@ int main() {
         {
             std::cout << "Loading contents from " << baseUrl << result << std::endl;
             std::string contents;
-            bool success = httpClient.get(result, &contents);
+            bool success = HttpClient::get(curl.get(), baseUrl + result, &contents);
 
             if (!success)
             {

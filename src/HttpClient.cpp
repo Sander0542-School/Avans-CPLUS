@@ -14,36 +14,19 @@ size_t CurlWrite_CallbackFunc_StdString(char* contents, size_t size, size_t nmem
     return newLength;
 }
 
-HttpClient::HttpClient(const std::string baseUrl) : baseUrl{baseUrl} {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-
-    curl = curl_easy_init();
-
+bool HttpClient::get(CURL* curl, const std::string& url, std::string* contents) {
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, CurlWrite_CallbackFunc_StdString);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, contents);
     curl_easy_setopt(curl, CURLOPT_FAILONERROR, true);
-}
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
-HttpClient::~HttpClient() {
-    curl_easy_cleanup(curl);
-    curl_global_cleanup();
-}
+    CURLcode res = curl_easy_perform(curl);
 
-bool HttpClient::get(const std::string file, std::string* contents) const {
-    std::string url = baseUrl + file;
-
-    if (curl)
+    if (res == CURLE_OK)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, contents);
-
-        CURLcode res = curl_easy_perform(curl);
-
-        if (res == CURLE_OK)
-        {
-            return true;
-        }
+        return true;
     }
 
     return false;

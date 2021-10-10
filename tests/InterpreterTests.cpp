@@ -1,12 +1,14 @@
 #include "InterpreterTests.hpp"
 
+std::string InterpreterTests::baseUrl = "https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/";
+
 void InterpreterTests::run() {
     test_files();
 }
 
 void InterpreterTests::test_files() {
     // https://gist.github.com/Sander0542/2f14d5f7ae656ad91dba180764c19710
-    HttpClient httpClient = HttpClient("https://gist.githubusercontent.com/Sander0542/2f14d5f7ae656ad91dba180764c19710/raw/");
+    std::unique_ptr<CURL, void (*)(CURL*)> curl{curl_easy_init(), &curl_easy_cleanup};
     Interpreter interpreter;
 
     auto files = std::map<std::string, bool>{
@@ -39,7 +41,7 @@ void InterpreterTests::test_files() {
 
     std::string base;
     Assert::Start("Interpreter (base.krul)");
-    Assert::True(httpClient.get("base.krul", &base));
+    Assert::True(HttpClient::get(curl.get(), baseUrl + "base.krul", &base));
 
     base += "\n";
 
@@ -48,7 +50,7 @@ void InterpreterTests::test_files() {
         Assert::Start("Interpreter (" + file.first + ")");
 
         std::string content;
-        auto success = httpClient.get(file.first, &content);
+        auto success = HttpClient::get(curl.get(), baseUrl + file.first, &content);
 
         Assert::True(success);
         if (success)
