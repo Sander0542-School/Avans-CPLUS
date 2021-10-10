@@ -9,7 +9,7 @@ public:
     static int tests;
     static int errors;
 
-    static void Start(const std::string name);
+    static void Start(const std::string& name);
 
     static void PrintResult();
 
@@ -46,9 +46,9 @@ public:
     }
 
 private:
-    static void PrintSuccess(const std::string caller = __builtin_FUNCTION());
+    static void PrintSuccess(const std::string& caller = __builtin_FUNCTION());
 
-    static void PrintError(const std::string message, const std::string caller = __builtin_FUNCTION());
+    static void PrintError(const std::string& message, const std::string& caller = __builtin_FUNCTION());
 };
 
 #endif //SPEUREN_MET_KRUL_ASSERT_HPP
