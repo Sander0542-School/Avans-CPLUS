@@ -11,8 +11,6 @@ using labels_map = std::map<std::string, int>;
 
 class Interpreter {
 public:
-    Interpreter();
-
     bool execute(const std::string& file, std::string& result);
 
 private:

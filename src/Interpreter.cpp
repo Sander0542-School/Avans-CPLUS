@@ -1,13 +1,6 @@
 #include <iostream>
 #include "Interpreter.hpp"
 
-Interpreter::Interpreter() {
-    stack = {};
-    call_stack = {};
-    variables = {};
-    labels = {};
-}
-
 bool Interpreter::execute(const std::string& file, std::string& result) {
     stack.clear();
     call_stack.clear();
