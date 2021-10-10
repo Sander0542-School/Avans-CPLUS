@@ -3,17 +3,17 @@
 #include "HttpClient.hpp"
 #include "Interpreter.hpp"
 
-const std::string baseUrl = "https://www.swiftcoder.nl/cplus/";
-const std::string startFile = "start.txt";
-
 int main() {
     auto start = std::chrono::high_resolution_clock::now();
+
+    const std::string baseUrl = "https://www.swiftcoder.nl/cplus/";
+
     try
     {
         std::unique_ptr<CURL, void (*)(CURL*)> curl{curl_easy_init(), &curl_easy_cleanup};
         Interpreter interpreter;
 
-        std::string result = startFile;
+        std::string result = "start.txt";
         bool isEnd;
 
         do
