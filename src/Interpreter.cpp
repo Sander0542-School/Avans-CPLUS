@@ -147,7 +147,7 @@ void Interpreter::execute_command(std::string& command, int& i) {
         auto val2 = stack.pop();
         auto val1 = stack.pop();
 
-        if (val1.compare(val2) == 0)
+        if (val1 == val2)
             i = line;
     }
     else if (command == "gne")
@@ -156,7 +156,7 @@ void Interpreter::execute_command(std::string& command, int& i) {
         auto val2 = stack.pop();
         auto val1 = stack.pop();
 
-        if (val1.compare(val2) != 0)
+        if (val1 != val2)
             i = line;
     }
     else if (command == "glt")
