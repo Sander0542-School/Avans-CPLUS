@@ -22,14 +22,6 @@ public:
     }
 
     template<class T>
-    static void NotSame(T expected, T result) {
-        if (expected != result)
-            PrintSuccess();
-        else
-            PrintError("Values are the Same");
-    }
-
-    template<class T>
     static void True(T result) {
         if (result)
             PrintSuccess();
