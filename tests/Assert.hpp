@@ -1,7 +1,7 @@
 #ifndef SPEUREN_MET_KRUL_ASSERT_HPP
 #define SPEUREN_MET_KRUL_ASSERT_HPP
 
-#include "iostream"
+#include <iostream>
 
 class Assert {
 public:

@@ -1,8 +1,8 @@
 #ifndef SPEUREN_MET_KRUL_STACK_HPP
 #define SPEUREN_MET_KRUL_STACK_HPP
 
-#include "string"
-#include "vector"
+#include <string>
+#include <vector>
 
 class Stack {
 public:
