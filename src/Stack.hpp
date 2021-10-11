@@ -15,6 +15,8 @@ public:
 
     std::string pop() noexcept;
 
+    int pop_int() noexcept;
+
     std::string peek() const noexcept;
 
     void clear() noexcept;

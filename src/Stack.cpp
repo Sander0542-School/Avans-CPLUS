@@ -15,6 +15,17 @@ std::string Stack::pop() noexcept {
     return "";
 }
 
+int Stack::pop_int() noexcept {
+    if (!_items.empty())
+    {
+        auto value = _items.back();
+        _items.pop_back();
+        return std::stoi(value);
+    }
+
+    return 0;
+}
+
 std::string Stack::peek() const noexcept {
     if (!_items.empty())
     {

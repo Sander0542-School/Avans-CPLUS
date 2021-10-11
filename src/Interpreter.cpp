@@ -36,58 +36,58 @@ void Interpreter::execute_command(std::string& command, int& i) {
     // Integer operations
     if (command == "add")
     {
-        int val1 = std::stoi(stack.pop());
-        int val2 = std::stoi(stack.pop());
+        int val1 = stack.pop_int();
+        int val2 = stack.pop_int();
 
         stack.push(val1 + val2);
     }
     else if (command == "sub")
     {
-        int val1 = std::stoi(stack.pop());
-        int val2 = std::stoi(stack.pop());
+        int val1 = stack.pop_int();
+        int val2 = stack.pop_int();
 
         stack.push(val2 - val1);
     }
     else if (command == "mul")
     {
-        int val1 = std::stoi(stack.pop());
-        int val2 = std::stoi(stack.pop());
+        int val1 = stack.pop_int();
+        int val2 = stack.pop_int();
 
         stack.push(val1 * val2);
     }
     else if (command == "div")
     {
-        int val1 = std::stoi(stack.pop());
-        int val2 = std::stoi(stack.pop());
+        int val1 = stack.pop_int();
+        int val2 = stack.pop_int();
 
         stack.push(val2 / val1);
     }
     else if (command == "mod")
     {
-        int val1 = std::stoi(stack.pop());
-        int val2 = std::stoi(stack.pop());
+        int val1 = stack.pop_int();
+        int val2 = stack.pop_int();
 
         stack.push(val2 % val1);
     }
     else if (command == "neg")
     {
-        int val = -std::stoi(stack.pop());
+        int val = -stack.pop_int();
         stack.push(val);
     }
     else if (command == "abs")
     {
-        int val = std::stoi(stack.pop());
+        int val = stack.pop_int();
         val = std::abs(val);
         stack.push(val);
     }
     else if (command == "inc")
     {
-        int val = std::stoi(stack.pop());
+        int val = stack.pop_int();
         stack.push(++val);
     }
     else if (command == "dec")
     {
-        int val = std::stoi(stack.pop());
+        int val = stack.pop_int();
         stack.push(--val);
     }
         // String operations
@@ -103,14 +103,14 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "slc")
     {
-        auto to = std::stoi(stack.pop());
-        auto from = std::stoi(stack.pop());
+        auto to = stack.pop_int();
+        auto from = stack.pop_int();
         auto val = stack.pop();
         stack.push(val.substr(from, to - from));
     }
     else if (command == "idx")
     {
-        auto index = std::stoi(stack.pop());
+        auto index = stack.pop_int();
         auto val = stack.pop();
         stack.push(val.substr(index, 1));
     }
@@ -139,11 +139,11 @@ void Interpreter::execute_command(std::string& command, int& i) {
         // Tests & Jumps
     else if (command == "gto")
     {
-        i = std::stoi(stack.pop());
+        i = stack.pop_int();
     }
     else if (command == "geq")
     {
-        auto line = std::stoi(stack.pop());
+        auto line = stack.pop_int();
         auto val2 = stack.pop();
         auto val1 = stack.pop();
 
@@ -152,7 +152,7 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "gne")
     {
-        auto line = std::stoi(stack.pop());
+        auto line = stack.pop_int();
         auto val2 = stack.pop();
         auto val1 = stack.pop();
 
@@ -161,36 +161,36 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "glt")
     {
-        auto line = std::stoi(stack.pop());
-        auto val2 = std::stoi(stack.pop());
-        auto val1 = std::stoi(stack.pop());
+        auto line = stack.pop_int();
+        auto val2 = stack.pop_int();
+        auto val1 = stack.pop_int();
 
         if (val1 < val2)
             i = line;
     }
     else if (command == "gle")
     {
-        auto line = std::stoi(stack.pop());
-        auto val2 = std::stoi(stack.pop());
-        auto val1 = std::stoi(stack.pop());
+        auto line = stack.pop_int();
+        auto val2 = stack.pop_int();
+        auto val1 = stack.pop_int();
 
         if (val1 <= val2)
             i = line;
     }
     else if (command == "ggt")
     {
-        auto line = std::stoi(stack.pop());
-        auto val2 = std::stoi(stack.pop());
-        auto val1 = std::stoi(stack.pop());
+        auto line = stack.pop_int();
+        auto val2 = stack.pop_int();
+        auto val1 = stack.pop_int();
 
         if (val1 > val2)
             i = line;
     }
     else if (command == "gge")
     {
-        auto line = std::stoi(stack.pop());
-        auto val2 = std::stoi(stack.pop());
-        auto val1 = std::stoi(stack.pop());
+        auto line = stack.pop_int();
+        auto val2 = stack.pop_int();
+        auto val1 = stack.pop_int();
 
         if (val1 >= val2)
             i = line;
@@ -204,8 +204,7 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "ret")
     {
-        auto line = std::stoi(call_stack.pop());
-        i = line;
+        i = call_stack.pop_int();
     }
         // Values and types
     else if (StringUtil::is_number(command))
