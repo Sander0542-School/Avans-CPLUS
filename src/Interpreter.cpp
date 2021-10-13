@@ -36,31 +36,31 @@ void Interpreter::execute_command(std::string& command, int& i) {
     // Integer operations
     if (command == "add")
     {
-        int val1 = stack.pop_int();
-        int val2 = stack.pop_int();
+        int right = stack.pop_int();
+        int left = stack.pop_int();
 
-        stack.push(val1 + val2);
+        stack.push(left + right);
     }
     else if (command == "sub")
     {
-        int val1 = stack.pop_int();
-        int val2 = stack.pop_int();
+        int right = stack.pop_int();
+        int left = stack.pop_int();
 
-        stack.push(val2 - val1);
+        stack.push(left - right);
     }
     else if (command == "mul")
     {
-        int val1 = stack.pop_int();
-        int val2 = stack.pop_int();
+        int right = stack.pop_int();
+        int left = stack.pop_int();
 
-        stack.push(val1 * val2);
+        stack.push(left * right);
     }
     else if (command == "div")
     {
-        int val1 = stack.pop_int();
-        int val2 = stack.pop_int();
+        int right = stack.pop_int();
+        int left = stack.pop_int();
 
-        stack.push(val2 / val1);
+        stack.push(left / right);
     }
     else if (command == "mod")
     {
@@ -71,8 +71,8 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "neg")
     {
-        int val = -stack.pop_int();
-        stack.push(val);
+        int val = stack.pop_int();
+        stack.push(-val);
     }
     else if (command == "abs")
     {
@@ -116,9 +116,9 @@ void Interpreter::execute_command(std::string& command, int& i) {
     }
     else if (command == "cat")
     {
-        auto val1 = stack.pop();
-        auto val2 = stack.pop();
-        stack.push(val2 + val1);
+        auto right = stack.pop();
+        auto left = stack.pop();
+        stack.push(left + right);
     }
     else if (command == "len")
     {
