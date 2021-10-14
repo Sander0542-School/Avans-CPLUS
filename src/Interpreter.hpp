@@ -3,6 +3,7 @@
 
 #include "Stack.hpp"
 #include "utils/StringUtil.hpp"
+#include "Exceptions/SyntaxException.hpp"
 #include <map>
 #include <string>
 

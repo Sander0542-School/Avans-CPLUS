@@ -15,6 +15,7 @@ bool Interpreter::execute(const std::string& file, std::string& result) {
 
     while (i >= 0 && i < commands.size())
     {
+        int line = i;
         std::string command = (commands)[i];
 
         if (command == "end")
@@ -23,7 +24,14 @@ bool Interpreter::execute(const std::string& file, std::string& result) {
             return true;
         }
 
-        execute_command(command, i);
+        try
+        {
+            execute_command(command, i);
+        }
+        catch (...)
+        {
+            throw SyntaxException((result + ":" + std::to_string(line)).c_str());
+        }
     }
 
     result = stack.peek();
