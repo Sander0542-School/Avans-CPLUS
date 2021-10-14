@@ -7,7 +7,12 @@
 
 class HttpClient {
 public:
-    static bool get(CURL* curl, const std::string& url, std::string* contents);
+    HttpClient();
+
+    bool get(const std::string& url, std::string* contents);
+
+private:
+    std::unique_ptr<CURL, void (*)(CURL*)> _curl;
 };
 
 

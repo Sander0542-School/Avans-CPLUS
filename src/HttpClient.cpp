@@ -14,15 +14,18 @@ size_t CurlWrite_CallbackFunc_StdString(char* contents, size_t size, size_t nmem
     return newLength;
 }
 
-bool HttpClient::get(CURL* curl, const std::string& url, std::string* contents) {
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &CurlWrite_CallbackFunc_StdString);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, contents);
-    curl_easy_setopt(curl, CURLOPT_FAILONERROR, true);
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+HttpClient::HttpClient() : _curl{curl_easy_init(), &curl_easy_cleanup} {
+}
 
-    CURLcode res = curl_easy_perform(curl);
+bool HttpClient::get(const std::string& url, std::string* contents) {
+    curl_easy_setopt(_curl.get(), CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(_curl.get(), CURLOPT_SSL_VERIFYHOST, 0L);
+    curl_easy_setopt(_curl.get(), CURLOPT_WRITEFUNCTION, &CurlWrite_CallbackFunc_StdString);
+    curl_easy_setopt(_curl.get(), CURLOPT_WRITEDATA, contents);
+    curl_easy_setopt(_curl.get(), CURLOPT_FAILONERROR, true);
+    curl_easy_setopt(_curl.get(), CURLOPT_URL, url.c_str());
+
+    CURLcode res = curl_easy_perform(_curl.get());
 
     if (res == CURLE_OK)
     {

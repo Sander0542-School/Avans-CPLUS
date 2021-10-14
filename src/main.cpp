@@ -10,7 +10,7 @@ int main() {
 
     try
     {
-        std::unique_ptr<CURL, void (*)(CURL*)> curl{curl_easy_init(), &curl_easy_cleanup};
+        HttpClient httpClient;
         Interpreter interpreter;
 
         std::string result = "start.txt";
@@ -20,12 +20,12 @@ int main() {
         {
             std::cout << "Loading contents from " << baseUrl << result << std::endl;
             std::string contents;
-            bool success = HttpClient::get(curl.get(), baseUrl + result, &contents);
+            bool success = httpClient.get(baseUrl + result, &contents);
 
             if (!success)
             {
                 std::cout << "Could not load file" << std::endl;
-                return 0;
+                return 1;
             }
 
             isEnd = interpreter.execute(contents, result);
@@ -36,10 +36,12 @@ int main() {
     catch (const SyntaxException& ex)
     {
         std::cerr << "Syntax error: " << ex.what() << std::endl;
+        return 1;
     }
     catch (...)
     {
         std::cerr << "There was an error" << std::endl;
+        return 1;
     }
 
     auto finish = std::chrono::high_resolution_clock::now();
