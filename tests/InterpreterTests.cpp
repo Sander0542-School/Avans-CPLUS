@@ -54,7 +54,14 @@ void InterpreterTests::test_files() {
         if (success)
         {
             std::string result;
-            Assert::Same(file.second, interpreter.execute(base + content, result));
+            try
+            {
+                Assert::Same(file.second, interpreter.execute(base + content, result));
+            }
+            catch (const SyntaxException& ex)
+            {
+                Assert::False(file.second);
+            }
         }
     }
 }
