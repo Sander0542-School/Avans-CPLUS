@@ -33,6 +33,10 @@ int main() {
 
         std::cout << "The secret messages is \"" << result << "\"." << std::endl;
     }
+    catch (const SyntaxException& ex)
+    {
+        std::cerr << "Syntax error: " << ex.what() << std::endl;
+    }
     catch (...)
     {
         std::cerr << "There was an error" << std::endl;
